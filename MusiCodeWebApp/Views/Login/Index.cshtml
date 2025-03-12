@@ -1,0 +1,47 @@
+﻿@model MusiCodeWebApp.Models.UserLoginViewModel
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Assets/Css/Login.css" rel="stylesheet" />
+    <title>Uye Giris</title>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="~/Assets/PageImages/MusicodeLogo.png" />
+        </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            //Bu kullanim web uygulamalarinda Cross-Site Request Forgery(CSRF) saldirilarina karsi koruma saglar.
+            if (ViewBag.mesaj != null)
+            {
+                <div class="validation-summary-errors">
+                    @ViewBag.mesaj
+                </div>
+            }
+            @Html.ValidationSummary()
+            <div class="row">
+                @Html.EditorFor(x => x.Mail, new { htmlAttributes = new { @class = "formTextbox", @placeholder = "Mail Adresiniz" } })
+            </div>
+            <div class="row">
+                @Html.EditorFor(x => x.Password, new { htmlAttributes = new { @class = "formTextbox", @placeholder = "Sifreniz" } })
+            </div>
+            <div class="row">
+                @Html.EditorFor(x => x.RememberMe) <label for="RememberMe">Unutma Beni... Unutama Beni...</label>
+            </div>
+            <div class="row">
+                <input type="submit" value="Giris Yap" class="loginButton" />
+            </div>
+            <div class="row">
+                <a href="@Url.Action("Register", "Login")" style="text-decoration:none;">Hesap Oluştur</a>
+            </div>
+        }
+    </div>
+</body>
+</html>

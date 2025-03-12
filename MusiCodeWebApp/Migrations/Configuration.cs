@@ -39,7 +39,7 @@
 
             #region User
 
-            context.Managers.AddOrUpdate(x => x.ID, new Manager() { ID = 1, Name = "Default", Surname = "User", Mail = "us@us.com", ManagerRoleID = 1, Password = "12345", IsActive = true, IsDeleted = false });
+            context.Users.AddOrUpdate(x => x.ID, new User() { ID = 1, Name = "Default", Surname = "User", Mail = "us@us.com", UserRoleID = 1, Password = "12345", IsActive = true, IsDeleted = false });
 
             #endregion
         }

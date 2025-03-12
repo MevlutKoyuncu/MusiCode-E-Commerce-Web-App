@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Assets/Css/HomePage.css" rel="stylesheet" />
+    <title>@ViewBag.Title</title>
+    @RenderSection("styles", false)
+</head>
+<body>
+
+    <div class="topMenu">
+        <marquee behavior="scrool" direction="left">1000 TL VE UZERI SIPARISLERDE KARGO UCRETSIZ</marquee>
+    </div>
+    <div class="homeLogoBase">
+        <a href="https://localhost:44301/"><img src="~/Assets/PageImages/MusicodeLogo.png" /></a>
+
+    </div>
+    <div class="homeUserBase">
+        <img src="~/Assets/PageImages/user.png" />
+        @if (Session["UserSession"] != null)
+        {
+            <a href="@Url.Action("Index","UserPanel")">Hesabım</a>
+            <a href="@Url.Action("Logout","Login")">Çıkış Yap</a>
+
+        }
+        else
+        {
+            <a href="@Url.Action("Index","Login")">Giriş Yap</a>
+        }
+    </div>
+
+    <nav class="navbar">
+        <ul class="nav-links">
+            <li><a href="#">Akerdeon</a></li>
+            <li><a href="#">Keman</a></li>
+            <li><a href="#">Gitar</a></li>
+            <li><a href="#">Piyano ve Org</a></li>
+            <li><a href="#">Viylonsel Cello</a></li>
+            <li><a href="#">Kontrbas Doublebass</a></li>
+            <li><a href="#">Tum Urunler</a></li>
+            <li><a href="#">Firsat Urunleri</a></li>
+        </ul>
+    </nav>
+    <div class="banner mainContainer">
+        <img src="~/Assets/PageImages/violin-bow-white-background.jpg" />
+    </div>
+   
+    <div class="mainContainer">
+        @RenderBody()
+    </div>
+    <div class="clearfix">
+
+    </div>
+</body>
+</html>

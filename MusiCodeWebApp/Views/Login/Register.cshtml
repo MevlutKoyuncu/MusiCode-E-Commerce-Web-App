@@ -1,0 +1,50 @@
+﻿@model MusiCodeWebApp.Models.User
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Assets/Css/Login.css" rel="stylesheet" />
+    <title>Uye Giris</title>
+</head>
+<body>
+    <div class="containerr">
+        <div class="logo">
+            <img src="~/Assets/PageImages/MusicodeLogo.png" />
+        </div>
+        @using (Html.BeginForm())
+        {
+            if (ViewBag.mesaj != null)
+            {
+                <label class="validationMessage">@ViewBag.mesaj</label>
+            }
+            <div class="row">
+                <label>Isim</label>
+                @Html.EditorFor(x => x.Name, new { htmlAttributes = new { @class = "formTextbox" } })
+                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "validationMessage" })
+            </div>
+            <div class="row">
+                <label>Soyisim</label>
+                @Html.EditorFor(x => x.Surname, new { htmlAttributes = new { @class = "formTextbox" } })
+                @Html.ValidationMessageFor(x => x.Surname, "", new { @class = "validationMessage" })
+            </div>
+            <div class="row">
+                <label>Mail</label>
+                @Html.EditorFor(x => x.Mail, new { htmlAttributes = new { @class = "formTextbox" } })
+                @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "validationMessage" })
+            </div>
+            <div class="row">
+                <label>Şifre</label>
+                @Html.EditorFor(x => x.Password, new { htmlAttributes = new { @class = "formTextbox" } })
+                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "validationMessage" })
+            </div>
+            <div class="row">
+                <button type="submit" class="loginButton">Üye Ol</button>
+            </div>
+        }
+    </div>
+    <div class="clearfix"></div>
+</body>
+</html>

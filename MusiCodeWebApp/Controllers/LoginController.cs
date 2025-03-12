@@ -1,4 +1,5 @@
-﻿using MusiCodeWebApp.Models;
+﻿using MusiCodeWebApp.Areas.ManagerPanel.Data;
+using MusiCodeWebApp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,28 +13,75 @@ namespace MusiCodeWebApp.Controllers
         MusiCodeDBModel db = new MusiCodeDBModel();
         public ActionResult Index()
         {
-
-            return View();
-        }
-        public ActionResult Login()
-        {
             if (Request.Cookies["UserCookie"] != null)
             {
                 HttpCookie SavedCookie = Request.Cookies["UserCookie"];
                 string mail = SavedCookie.Values["mail"];
                 string password = SavedCookie.Values["password"];
 
-                Manager m = db.Users.FirstOrDefault(x => x.Mail == mail && x.Password == password);
-                if (m != null)
+                User u = db.Users.FirstOrDefault(x => x.Mail == mail && x.Password == password);
+                if (u != null)
                 {
-                    if (m.IsActive)
+                    if (u.IsActive)
                     {
-                        Session["ManagerSession"] = m;
+                        Session["UserSession"] = u;
                         return RedirectToAction("Index", "Home");
                     }
                 }
             }
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(UserLoginViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                User u = db.Users.FirstOrDefault(x => x.Mail == model.Mail && x.Password == model.Password);
+                if (u != null)
+                {
+                    if (u.IsActive)
+                    {
+                        if (model.RememberMe)
+                        {
+                            HttpCookie cookie = new HttpCookie("UserCookie");
+                            cookie["mail"] = model.Mail;
+                            cookie["password"] = model.Password;
+                            cookie.Expires = DateTime.Now.AddDays(10);
+                            Response.Cookies.Add(cookie);
+                        }
+                        Session["UserSession"] = u;
+                        return RedirectToAction("Index", "Home");
+                    }
+                    else
+                    {
+                        ViewBag.mesaj = "Kullanıcı hesabınız askıya alınmıştır";
+                    }
+                }
+                else
+                {
+                    ViewBag.mesaj = "Kullanıcı bulunamadı";
+                }
+            }
+            return View(model);
+
+        }
+        public ActionResult Logout()
+        {
+            Session["UserSession"] = null;
+            if (Request.Cookies["UserCookie"] != null)
+            {
+                HttpCookie SavedCookie = Request.Cookies["UserCookie"];
+                SavedCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(SavedCookie);
+            }
+            return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+        
     }
 }

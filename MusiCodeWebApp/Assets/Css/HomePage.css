@@ -1,0 +1,111 @@
+﻿*, h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+}
+
+.topMenu {
+    background-color: #7b0dbb;
+    position: fixed;
+    width: 100%;
+    padding: 5px;
+    font-family: 'Calisto MT';
+    font-weight:900;
+    color: aliceblue;
+    font-size: 20px;
+    float: left;
+}
+
+.homeLogoBase {
+    float: left;
+}
+
+    .homeLogoBase img {
+        width: 300px;
+        margin-top: 20%;
+        margin-left: 35%;
+    }
+
+.homeUserBase {
+    margin-left: 30%;
+    margin-top: 65px;
+    float: right;
+    margin-right:160px;
+}
+
+    .homeUserBase img {
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+        margin-bottom:-10px;
+    }
+
+    .homeUserBase a {
+        color: black;
+        -webkit-text-decoration: none;
+        text-decoration: none;
+    }
+
+    .homeUserBase a:hover {
+        color: silver;
+    }
+
+
+
+.navbar {
+    float: right;
+    margin-top: 5px;
+    background-color: #7b0dbb;
+    width: 100%;
+    font-size: 15px;
+    font-family: Calibri;
+    padding: 10px;
+    color: aliceblue;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+    .navbar a {
+        color: aliceblue;
+        text-decoration: none;
+    }
+
+    .navbar ul {
+        justify-content: center;
+        display: flex;
+        list-style-type: none;
+    }
+
+    .navbar li a {
+        padding-left: 25px;
+        margin-left: 25px;
+    }
+
+    .navbar a:hover {
+        color: silver;
+    }
+
+.row {
+    margin: 10px 0;
+}
+.banner {
+   
+}
+    .banner img {
+        width: 100%;
+        height: 800px;
+        background-repeat: no-repeat;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+.mainContainer {
+    width: 80%;
+    height: 800px;
+    float: left;
+    margin: 15px 100px 100px 150px;
+}
