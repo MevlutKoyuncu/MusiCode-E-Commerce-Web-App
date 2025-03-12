@@ -30,6 +30,18 @@
 
             #endregion
 
+            #region User Types
+
+            context.UserRoles.AddOrUpdate(x => x.ID, new UserRole() { ID = 1, Name = "Default User", IsDeleted = false });
+
+
+            #endregion
+
+            #region User
+
+            context.Managers.AddOrUpdate(x => x.ID, new Manager() { ID = 1, Name = "Default", Surname = "User", Mail = "us@us.com", ManagerRoleID = 1, Password = "12345", IsActive = true, IsDeleted = false });
+
+            #endregion
         }
     }
 }

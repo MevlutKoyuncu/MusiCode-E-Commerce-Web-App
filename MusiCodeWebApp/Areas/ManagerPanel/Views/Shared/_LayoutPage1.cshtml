@@ -1,0 +1,46 @@
+﻿@using MusiCodeWebApp.Models;
+@{ Manager m = new Manager();
+    if (Session["ManagerSession"] != null)
+    {
+        m = Session["ManagerSession"] as Manager;
+    }
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Areas/ManagerPanel/Assets/Css/ManagerStyle.css" rel="stylesheet" />
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="menuContainer">
+        <div class="logoBase">
+            <img src="~/Areas/ManagerPanel/Assets/Images/MusicodeLogo-White.png" />
+        </div>
+        <div class="userBase">
+            <a hreg="#" style="color:gray">@m.Name @m.Surname</a>
+            <a href="@Url.Action("Logout","Login")" style="color: #7b0dbb">Çıkış Yap</a>
+        </div>
+        <div style="clear:both"></div>
+    </div>
+    <div class="sideMenu">
+        <label>Yönetim</label>
+        <a href="@Url.Action("Index","Home")">Anasayfa</a>
+        <label>Kategori İşlemleri</label>
+        <a href="@Url.Action("Index","Category")">Kategori Listele</a>
+        <a href="@Url.Action("Create","Category")">Kategori Ekle</a>
+        <label>Marka İşlemleri</label>
+        <a href="@Url.Action("Index","Brand")">Marka Listele</a>
+        <a href="@Url.Action("Create","Brand")">Marka Ekle</a>
+        <label>Ürün İşlemleri</label>
+        <a href="@Url.Action("Index","Product")">Ürün Listele</a>
+        <a href="@Url.Action("Create","Product")">Ürün Ekle</a>
+
+    </div>
+    <div class="mainContainer">
+        @RenderBody()
+    </div>
+</body>
+</html>

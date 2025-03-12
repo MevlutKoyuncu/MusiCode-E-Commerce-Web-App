@@ -97,28 +97,56 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\ManagerPanel\Assets\Css\FormStyle.css" />
+    <Content Include="Areas\ManagerPanel\Assets\Css\ManagerLoginCSS.css" />
+    <Content Include="Areas\ManagerPanel\Assets\Css\ManagerStyle.css" />
+    <Content Include="Areas\ManagerPanel\Assets\Images\MusicodeLogo-White.png" />
+    <Content Include="Areas\ManagerPanel\Assets\Images\MusicodeLogo.png" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\ManagerPanel\Controllers\BrandController.cs" />
+    <Compile Include="Areas\ManagerPanel\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\ManagerPanel\Controllers\HomeController.cs" />
     <Compile Include="Areas\ManagerPanel\Controllers\LoginController.cs" />
+    <Compile Include="Areas\ManagerPanel\Controllers\ProductController.cs" />
     <Compile Include="Areas\ManagerPanel\Data\ManagerLoginViewModel.cs" />
+    <Compile Include="Areas\ManagerPanel\Filters\ManagerLoginRequiredFilterAttribute.cs" />
     <Compile Include="Areas\ManagerPanel\ManagerPanelAreaRegistration.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Brand.cs" />
+    <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Entity.cs" />
     <Compile Include="Models\Manager.cs" />
     <Compile Include="Models\ManagerRole.cs" />
     <Compile Include="Models\MusiCodeDBModel.cs" />
+    <Compile Include="Models\Product.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="Areas\ManagerPanel\Views\web.config" />
     <Content Include="Areas\ManagerPanel\Views\Login\Index.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Shared\_LayoutPage1.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Home\Index.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Category\Index.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Category\Create.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Brand\Index.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Brand\Create.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Brand\Edit.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Product\Index.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Product\Create.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\ManagerPanel\Views\System\Error.cshtml" />
     <None Include="packages.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -129,8 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\ManagerPanel\Views\Shared\" />
-    <Folder Include="Controllers\" />
+    <Folder Include="Assets\PageImages\" />
+    <Folder Include="Assets\ProductImages\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

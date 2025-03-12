@@ -15,32 +15,69 @@ namespace MusiCodeWebApp.Areas.ManagerPanel.Controllers
         //Area ekleyerek manager paneli kismini ayirdik
         public ActionResult Index()
         {
+            if (Request.Cookies["ManagerCookie"] != null)
+            {
+                HttpCookie SavedCookie = Request.Cookies["ManagerCookie"];
+                string mail = SavedCookie.Values["mail"];
+                string password = SavedCookie.Values["password"];
+
+                Manager m = db.Managers.FirstOrDefault(x => x.Mail == mail && x.Password == password);
+                if (m != null)
+                {
+                    if (m.IsActive)
+                    {
+                        Session["ManagerSession"] = m;
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+            }
             return View();
         }
+
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(ManagerLoginViewModel model)
         {
             if (ModelState.IsValid)
             {
                 Manager m = db.Managers.FirstOrDefault(x => x.Mail == model.Mail && x.Password == model.Password);
-                if(m != null)
+                if (m != null)
                 {
-                    if(m.IsActive)
+                    if (m.IsActive)
                     {
-                        Session["manager"] = m;
+                        if (model.RememberMe)
+                        {
+                            HttpCookie cookie = new HttpCookie("ManagerCookie");
+                            cookie["mail"] = model.Mail;
+                            cookie["password"] = model.Password;
+                            cookie.Expires = DateTime.Now.AddDays(10);
+                            Response.Cookies.Add(cookie);
+                        }
+                        Session["ManagerSession"] = m;
                         return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        ViewBag.mesaj = "Kullanici hesabiniz askiya alinmistir";
+                        ViewBag.mesaj = "Kullanıcı hesabınız askıya alınmıştır";
                     }
                 }
                 else
                 {
-                    ViewBag.mesaj = "Kullanici bulunamadi";
+                    ViewBag.mesaj = "Kullanıcı bulunamadı";
                 }
             }
             return View(model);
+        }
+        public ActionResult Logout()
+        {
+            Session["ManagerSession"] = null;
+            if (Request.Cookies["ManagerCookie"] != null)
+            {
+                HttpCookie SavedCookie = Request.Cookies["ManagerCookie"];
+                SavedCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(SavedCookie);
+            }
+            return RedirectToAction("Index", "Login");
         }
     }
 }
