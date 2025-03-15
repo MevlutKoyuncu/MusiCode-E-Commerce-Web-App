@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MusiCodeWebApp.Models.Product>
+@{
+    ViewBag.Title = "AllProducts";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<link href="~/Assets/Css/ProductList.css" rel="stylesheet" />
+<div class="pagetitle">
+    <h2>Tüm Ürünler</h2>
+</div>
+
+<div class="product-container">
+    <ul class="product-list">
+        @foreach (MusiCodeWebApp.Models.Product item in Model)
+        {
+            if (item.IsActive == true)
+            {
+                <li class="product-item">
+                    <div class="product-image">
+                        <img src="~/Assets/ProductImages/@item.Image" alt="@item.Name" width="200" height="128" />
+                    </div>
+                    <div class="product-title">@item.Name</div>
+                    <div class="product-price">@string.Format("{0:C}", item.Price)</div>
+                    <a href="@Url.Action("Details", "Product", new { id = item.ID })" class="product-link">
+                        Detaya Git
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</div>

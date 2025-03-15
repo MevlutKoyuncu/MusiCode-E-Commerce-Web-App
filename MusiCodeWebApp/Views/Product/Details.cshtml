@@ -1,0 +1,22 @@
+﻿@model MusiCodeWebApp.Models.Product
+@{
+    string isim = Model.Name;
+    ViewBag.Title = isim;
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+<link href="~/Assets/Css/ProductDetails.css" rel="stylesheet" />
+
+<div class="product-container">
+    <div class="product-image">
+        <img src="~/Assets/ProductImages/@Model.Image" alt="@Model.Name">
+    </div>
+    <div class="product-info">
+        <h2 class="product-title">@Model.Name</h2>
+        <p class="description">@Model.Description</p>
+        <p class="price">@Model.Price TL</p>
+        <div class="buttons">
+            <button class="buy-now">Satın Al</button>
+            <button class="favorite">❤️</button>
+        </div>
+    </div>
+</div>

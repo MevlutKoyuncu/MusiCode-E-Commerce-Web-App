@@ -33,6 +33,7 @@ namespace MusiCodeWebApp.Models
         [Required(ErrorMessage = "Bu alan zorunludur")]
         [StringLength(maximumLength: 30, MinimumLength = 5, ErrorMessage = "Bu alan en fazla 5-30 karakter arasinda olabilir")]
         public string Password { get; set; }
+        public DateTime CreationDate { get; set; }
         public bool IsActive { get; set; }
     }
 }

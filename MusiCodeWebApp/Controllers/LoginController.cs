@@ -2,6 +2,7 @@
 using MusiCodeWebApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -82,6 +83,37 @@ namespace MusiCodeWebApp.Controllers
         {
             return View();
         }
-        
+        [HttpPost]
+        public ActionResult Register(User model)
+        {
+            if (db.Users.FirstOrDefault(x => x.Mail == model.Mail) == null)
+            {
+                if (ModelState.IsValid)
+                {
+                    try
+                    {
+                        model.CreationDate = DateTime.Now;
+                        model.IsDeleted = false;
+                        model.IsActive = true;
+                        model.UserRoleID = 1;
+                        db.Users.Add(model);
+                        db.SaveChanges();
+                        Session["UserSession"] = model.ID;
+                        TempData["mesaj"] = "Kayıt oluşturma başarılı";
+                        return RedirectToAction("Index", "Home");
+                    }
+                    catch
+                    {
+                        ViewBag.mesaj = "Bir hata oluştu";
+                    }
+                }
+            }
+            else
+            {
+                ViewBag.mesaj = "Bu mail zaten kayıtlı! Farklı bir mail adresi giriniz";
+                return View();
+            }
+            return View(model);
+        }
     }
 }

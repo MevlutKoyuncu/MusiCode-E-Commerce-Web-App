@@ -7,7 +7,7 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <link href="~/Assets/Css/Login.css" rel="stylesheet" />
-    <title>Uye Giris</title>
+    <title>Hesap Oluştur</title>
 </head>
 <body>
     <div class="containerr">
@@ -18,7 +18,7 @@
         {
             if (ViewBag.mesaj != null)
             {
-                <label class="validationMessage">@ViewBag.mesaj</label>
+                <label class="validation-summary-errors">@ViewBag.mesaj</label>
             }
             <div class="row">
                 <label>Isim</label>
@@ -42,6 +42,9 @@
             </div>
             <div class="row">
                 <button type="submit" class="loginButton">Üye Ol</button>
+            </div>
+            <div class="row">
+                <a href="@Url.Action("Index", "Login")" style="text-decoration:none; text-align:center;">Zaten bir hesabın var mı?</a>
             </div>
         }
     </div>

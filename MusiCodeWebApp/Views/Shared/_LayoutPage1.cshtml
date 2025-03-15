@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html>
 
+
+
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
@@ -29,7 +31,6 @@
             <a href="@Url.Action("Index","Login")">Giriş Yap</a>
         }
     </div>
-
     <nav class="navbar">
         <ul class="nav-links">
             <li><a href="#">Akerdeon</a></li>
@@ -38,14 +39,18 @@
             <li><a href="#">Piyano ve Org</a></li>
             <li><a href="#">Viylonsel Cello</a></li>
             <li><a href="#">Kontrbas Doublebass</a></li>
-            <li><a href="#">Tum Urunler</a></li>
+            <li><a href="@Url.Action("AllProducts","Product")">Tum Urunler</a></li>
             <li><a href="#">Firsat Urunleri</a></li>
         </ul>
     </nav>
-    <div class="banner mainContainer">
-        <img src="~/Assets/PageImages/violin-bow-white-background.jpg" />
+    <div>
+        @if (TempData["mesaj"] != null)
+        {
+            <h3 style="color:forestgreen; text-align:center">@TempData["mesaj"]</h3>
+            TempData["mesaj"] = null;
+        }
     </div>
-   
+
     <div class="mainContainer">
         @RenderBody()
     </div>

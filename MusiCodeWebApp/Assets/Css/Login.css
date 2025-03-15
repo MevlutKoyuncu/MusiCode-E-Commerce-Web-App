@@ -64,7 +64,7 @@ body {
 }
 
 .validation-summary-errors {
-    padding: 20px;
+    padding: 10px;
     color: darkred;
     background-color: #fbb2b2;
     border-radius: 5px;
